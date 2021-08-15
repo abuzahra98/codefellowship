@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.view.RedirectView;
 
 import java.security.Principal;
+import java.sql.Date;
+
 @Controller
 public class ApplicationUserController {
 
@@ -29,11 +31,13 @@ public class ApplicationUserController {
     }
 
     @PostMapping("/signup")
-    public RedirectView signUp(@RequestParam(value="username") String username, @RequestParam(value="password") String password){
-        ApplicationUser newUser = new ApplicationUser(username,bCryptPasswordEncoder.encode(password));
+    public RedirectView signUp(@RequestParam(value="username") String username, @RequestParam(value="password") String password, @RequestParam(value="firstName") String firstName,@RequestParam(value="lastName") String lastName,@RequestParam(value="dateOfBirth") Integer dateOfBirth,@RequestParam(value="bio") String bio){
+        ApplicationUser newUser = new ApplicationUser(username,bCryptPasswordEncoder.encode(password),firstName,lastName,dateOfBirth,bio);
         applicationUserRepository.save(newUser);
         return new RedirectView("/login");
     }
+
+    
 
 
 }

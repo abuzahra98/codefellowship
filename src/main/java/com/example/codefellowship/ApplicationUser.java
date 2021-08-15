@@ -5,6 +5,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import java.util.Collection;
+import java.util.Date;
+
 @Entity
 public class ApplicationUser implements UserDetails {
 
@@ -16,17 +18,19 @@ public class ApplicationUser implements UserDetails {
     String password;
     String firstName;
     String lastName;
-    int dateOfBirth;
+    Integer dateOfBirth;
     String bio;
-    public ApplicationUser(String username, String password, String firstName, String lastName, int dateOfBirth, String bio) {
+    public ApplicationUser(String username, String password, String firstName, String lastName, Integer dateOfBirth,String bio) {
         this.username = username;
         this.password = password;
         this.firstName = firstName;
         this.lastName = lastName;
         this.dateOfBirth = dateOfBirth;
         this.bio = bio;
+
     }
-    public ApplicationUser(String username, String encode){}
+
+    public ApplicationUser(){}
 
     public void setUsername(String username){
         this.username = username;
@@ -44,7 +48,7 @@ public class ApplicationUser implements UserDetails {
         this.lastName = lastName;
     }
 
-    public void setDateOfBirth(int dateOfBirth) {
+    public void setDateOfBirth(Integer dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
 
