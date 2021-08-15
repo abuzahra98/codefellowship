@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="user-info-container">
+  <h2>User Name</h2>
+  <p th:text="${allUserInfo.username}"></p>
+  <h2>Full Name</h2>
+  <p th:text="${allUserInfo.firstName} + ' '+${allUserInfo.lastName}"></p>
+  <h2>Date of birth</h2>
+  <p th:text="${allUserInfo.dateOfBirth}"></p>
+  <h2>bio</h2>
+  <p th:text="${allUserInfo.bio}"></p>
+</div>
+</body>
+</html>
