@@ -3,10 +3,8 @@ package com.example.codefellowship;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
 
 import java.security.Principal;
@@ -37,7 +35,15 @@ public class ApplicationUserController {
         return new RedirectView("/login");
     }
 
-    
+
+
+    @GetMapping("/user/{id}")
+    public String getUser(Principal p, Model model, @PathVariable Long id){
+            model.addAttribute("username",p.getName());
+            model.addAttribute("allUserInfo",applicationUserRepository.findById(id).get());
+
+        return "user.html";
+    }
 
 
 }
