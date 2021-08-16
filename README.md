@@ -62,3 +62,12 @@ A Post has a body and a createdAt timestamp.
 A logged-in user should be able to create a Post, and a post should belong to the user that created it.
 
 
+Using the above cheat sheet, add the ability for users to log in to your app.
+
+
+Upon logging in, users should be taken to a /myprofile route that displays their information.
+
+A Post has a body and a createdAt timestamp.
+
+
+A logged-in user should be able to create a Post, and a post should belong to the user that created it.

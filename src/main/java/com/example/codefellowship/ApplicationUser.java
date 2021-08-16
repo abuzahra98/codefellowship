@@ -6,6 +6,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import javax.persistence.*;
 import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 public class ApplicationUser implements UserDetails {
@@ -20,7 +21,9 @@ public class ApplicationUser implements UserDetails {
     String lastName;
     Integer dateOfBirth;
     String bio;
-    public ApplicationUser(String username, String password, String firstName, String lastName, Integer dateOfBirth,String bio) {
+    @OneToMany(mappedBy = "applicationUser")
+    private List<Post> posts;
+    public ApplicationUser(String username, String password, String firstName, String lastName, Integer dateOfBirth, String bio) {
         this.username = username;
         this.password = password;
         this.firstName = firstName;
@@ -55,11 +58,28 @@ public class ApplicationUser implements UserDetails {
     public void setBio(String bio) {
         this.bio = bio;
     }
-public long getId() {
+
+    public long getId() {
     return id;
 }
 
+    public String getFirstName() {
+        return firstName;
+    }
 
+    public String getLastName() {
+        return lastName;
+    }
+
+    public Integer getDateOfBirth() {
+        return dateOfBirth;
+    }
+
+    public String getBio() {
+        return bio;
+    }
+
+    public List<Post> getPosts() { return posts; }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -90,10 +110,8 @@ public long getId() {
     public boolean isCredentialsNonExpired() {
         return true;
     }
-
     @Override
     public boolean isEnabled() {
         return true;
     }
-
 }
