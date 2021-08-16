@@ -3,17 +3,57 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" href="../css/Style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+
+    <nav class="navbar navbar-expand-lg navbar-blue bg-dark">
+        <div class="container-fluid">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/">Home</a>
+                    </li>
+
+                </ul>
+            </div>
+            <a th:href="@{'/user/'+${userId}}" th:text="${userInfo}" class="userInfo"></a>
+        </div>
+    </nav>
 </head>
 <body>
+
+
+
+<img class="img" src="https://ca.slack-edge.com/TNGRRLUMA-U01KW1D2KAT-53b480bddc69-512">
 <div class="user-info-container">
   <h2>User Name</h2>
-  <p th:text="${allUserInfo.username}"></p>
+  <p th:text="${UserInfo.username}"></p>
   <h2>Full Name</h2>
-  <p th:text="${allUserInfo.firstName} + ' '+${allUserInfo.lastName}"></p>
+  <p th:text="${UserInfo.firstName} + ' '+${UserInfo.lastName}"></p>
   <h2>Date of birth</h2>
-  <p th:text="${allUserInfo.dateOfBirth}"></p>
+  <p th:text="${UserInfo.dateOfBirth}"></p>
   <h2>bio</h2>
-  <p th:text="${allUserInfo.bio}"></p>
+  <p th:text="${UserInfo.bio}"></p>
 </div>
+<form action="/myprofile" method="post" style="width:50%">
+    <h1>Add a post</h1>
+    <input type="text" name="body" id="body" class="form-control"/> <br/>
+    <button type="submit" class="btn btn-primary">post</button>
+</form>
+
+<span>
+    <h1>User posts</h1>
+    <div class="card" style="width: 18rem;" th:each="post:${UserInfo.posts}">
+        <div class="card-body">
+            <h5 class="card-title" th:text="${'post' + post.id}"></h5>
+            <h6 class="card-subtitle mb-2 text-muted" th:text="${post.createdAt}"></h6>
+            <p class="card-text" th:text="${post.body}"></p>
+        </div>
+    </div>
+</span>
 </body>
 </html>
