@@ -28,9 +28,12 @@
 
 
 
-<img class="img" src="https://ca.slack-edge.com/TNGRRLUMA-U01KW1D2KAT-53b480bddc69-512">
 <div class="user-info-container">
-  <h2>User Name</h2>
+
+    <img class="img" th:src="${UserInfo.imgUrl}"alt="UserInfo">
+
+
+    <h2>User Name</h2>
   <p th:text="${UserInfo.username}"></p>
   <h2>Full Name</h2>
   <p th:text="${UserInfo.firstName} + ' '+${UserInfo.lastName}"></p>
@@ -49,8 +52,10 @@
     <h1>User posts</h1>
     <div class="card" style="width: 18rem;" th:each="post:${UserInfo.posts}">
         <div class="card-body">
-            <h5 class="card-title" th:text="${'post' + post.id}"></h5>
-            <h6 class="card-subtitle mb-2 text-muted" th:text="${post.createdAt}"></h6>
+            <p th:text="${UserInfo.firstName} + ' '+${UserInfo.lastName}"></p>
+<!--             <img class="img" th:src="${UserInfo.imgUrl}"alt="UserInfo" style="width:20px">-->
+<!--            <h5 class="card-title" th:text="${'post' + post.id}"></h5>-->
+            <h6 class="card-subtitle mb-8 text-muted" th:text="${post.createdAt}"></h6>
             <p class="card-text" th:text="${post.body}"></p>
         </div>
     </div>

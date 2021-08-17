@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-blue bg-dark">
+    <div class="container-fluid">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="/">Home</a>
+                </li>
+                <li class="nav-item">
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/signup" th:style="${hideWhenLogin}">Signup</a>
+                </li>
+            </ul>
+        </div>
+        <a th:href="@{'/user/'+${userId}}" th:text="${userInfo}" class="userInfo"></a>
+    </div>
+</nav>
+   <span>
+        <h1>User posts</h1>
+        <div class="card" style="width: 18rem;" th:each="post:${UserInfo.posts}">
+            <div class="card-body">
+                <p th:text="${UserInfo.firstName} + ' '+${UserInfo.lastName}"></p>
+              <!--             <img class="img" th:src="${UserInfo.imgUrl}"alt="UserInfo" style="width:20px">-->
+              <!--            <h5 class="card-title" th:text="${'post' + post.id}"></h5>-->
+                <h6 class="card-subtitle mb-8 text-muted" th:text="${post.createdAt}"></h6>
+                <p class="card-text" th:text="${post.body}"></p>
+            </div>
+        </div>
+    </span>
+</body>
+</html>
