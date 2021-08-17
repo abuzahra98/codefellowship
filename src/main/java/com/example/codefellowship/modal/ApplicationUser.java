@@ -1,11 +1,11 @@
-package com.example.codefellowship;
+package com.example.codefellowship.modal;
 
+import com.example.codefellowship.modal.Post;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import java.util.Collection;
-import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -21,15 +21,20 @@ public class ApplicationUser implements UserDetails {
     String lastName;
     Integer dateOfBirth;
     String bio;
+    String imgUrl;
     @OneToMany(mappedBy = "applicationUser")
     private List<Post> posts;
-    public ApplicationUser(String username, String password, String firstName, String lastName, Integer dateOfBirth, String bio) {
+
+
+
+    public ApplicationUser(String username, String password, String firstName, String lastName, Integer dateOfBirth, String bio, String imgUrl) {
         this.username = username;
         this.password = password;
         this.firstName = firstName;
         this.lastName = lastName;
         this.dateOfBirth = dateOfBirth;
         this.bio = bio;
+        this.imgUrl = imgUrl;
 
     }
 
@@ -59,6 +64,10 @@ public class ApplicationUser implements UserDetails {
         this.bio = bio;
     }
 
+    public void setImgUrl(String imgUrl) {
+        this.imgUrl = imgUrl;
+    }
+
     public long getId() {
     return id;
 }
@@ -77,6 +86,10 @@ public class ApplicationUser implements UserDetails {
 
     public String getBio() {
         return bio;
+    }
+
+    public String getImgUrl() {
+        return imgUrl;
     }
 
     public List<Post> getPosts() { return posts; }

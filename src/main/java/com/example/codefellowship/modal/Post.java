@@ -1,4 +1,4 @@
-package com.example.codefellowship;
+package com.example.codefellowship.modal;
 
 import org.hibernate.annotations.CreationTimestamp;
 
